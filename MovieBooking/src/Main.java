@@ -1,6 +1,7 @@
 import model.Movie;
 import repository.MovieRepository;
 import repository.ReservationRepository;
+import repository.TheaterRepository;
 import service.MovieService;
 import service.ReservationService;
 
@@ -11,8 +12,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         MovieRepository movieRepository = new MovieRepository();
         ReservationRepository reservationRepository = new ReservationRepository();
+        TheaterRepository theaterRepository = new TheaterRepository(movieRepository);
         MovieService movieService = new MovieService(movieRepository);
-        ReservationService reservationService = new ReservationService(movieRepository, reservationRepository);
+        ReservationService reservationService = new ReservationService(theaterRepository, reservationRepository);
 
         while (true) {
             System.out.println("\n🎥 영화 예매 시스템 🎥");
