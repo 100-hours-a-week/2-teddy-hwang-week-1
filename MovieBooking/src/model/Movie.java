@@ -26,37 +26,6 @@ public class Movie {
     public int getRows() { return rows; }
     public int getCols() { return cols; }
 
-    public boolean isSeatAvailable(String seat) {
-        int row = seat.charAt(0) - 'A';
-        int col = Integer.parseInt(seat.substring(1)) - 1;
-        if (row >= rows || col >= cols) {
-            return false; // 좌석 범위를 초과하면 예매 불가
-        }
-        return !seats[row][col]; // false면 예약 가능
-    }
-
-    public void reserveSeat(String seat) {
-        int row = seat.charAt(0) - 'A';
-        int col = Integer.parseInt(seat.substring(1)) - 1;
-        seats[row][col] = true;
-    }
-
-    public void printSeatMap() {
-        System.out.println("\n💺 좌석 배치 (" + title + ")");
-        System.out.print("   ");
-        for (int i = 1; i <= cols; i++) {
-            System.out.print(i + "  ");
-        }
-        System.out.println();
-        for (int i = 0; i < rows; i++) {
-            System.out.print((char) ('A' + i) + "  ");
-            for (int j = 0; j < cols; j++) {
-                System.out.print(seats[i][j] ? "✕  " : "◯  "); // 예약된 좌석은 '✕', 예약 가능 좌석은 '◯'
-            }
-            System.out.println();
-        }
-    }
-
     public String toString() {
         return "[" + id + "] " + title + " (" + genre + ", " + duration + "분)";
     }
